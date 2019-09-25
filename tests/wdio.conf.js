@@ -1,56 +1,12 @@
 exports.config = {
 
-    // ==================================
-    // Where should your test be launched
-    // ==================================
-    //
-    //runner: 'local',
-    //
-    // =====================
-    // Server Configurations
-    // =====================
-    // Host address of the running Selenium server. This information is usually obsolete as
-    // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack or Testing Bot you also don't
-    // need to define host and port information because WebdriverIO can figure that out
-    // according to your user and key information. However if you are using a private Selenium
-    // backend you should define the host address, port, and path here.
-    //
-    /*
-    hostname: 'localhost',
-    port: 4444,
-    path: '/wd/hub',*/
-    //
-    // =================
-    // Service Providers
-    // =================
-    // WebdriverIO supports Sauce Labs, Browserstack and Testing Bot (other cloud providers
-    // should work too though). These services define specific user and key (or access key)
-    // values you need to put in here in order to connect to these services.
-    //
-    /*
-    user: 'webdriverio',
-    key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',*/
-    //
-    // If you run your tests on SauceLabs you can specify the region you want to run your tests
-    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
-    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
-    // If you don't provide the region it will default for the `us`
-    //region: 'us',
-    //
-    // ==================
-    // Specify Test Files
-    // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // from which `wdio` was called. Notice that, if you are calling `wdio` from an
-    // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
-    // directory is where your package.json resides, so `wdio` will be called from there.
-    //
     specs: [
         'tests/specs/*.spec.js'
     ],
     // Patterns to exclude.
-    //exclude: [],
+    exclude: [
+        'tests/specs/*.exclude.spec.js'
+    ],
     //
     // ============
     // Capabilities
@@ -86,7 +42,7 @@ exports.config = {
         }
       ],
       services: ['selenium-standalone'],
-    
+
 
     sync: true,
     //
@@ -144,13 +100,8 @@ exports.config = {
     // see also: https://webdriver.io/docs/dot-reporter.html and click on "Reporters" in left column
     //reporters: ['spec'],
 
-  reporters: ['spec', 'allure'],
+  reporters: ['spec', 'dot'],
 
-  reporterOptions: {
-   allure: {
-        outputDir: 'allure-results'
-    }
-},
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
